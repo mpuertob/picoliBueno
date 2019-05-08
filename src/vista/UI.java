@@ -162,20 +162,20 @@ public class UI extends JFrame {
 		pnlBotonera.add(panel, BorderLayout.CENTER);
 		panel.setLayout(new GridLayout(0, 1, 0, 0));
 
-		JButton btnIncrementoDemanda = new JButton("Incrementa Porcentaje Produccion");
+		btnIncrementoDemanda = new JButton("Incrementa Porcentaje Produccion");
 		panel.add(btnIncrementoDemanda);
 		btnIncrementoDemanda.setActionCommand("");
 		btnIncrementoDemanda.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnIncrementoDemanda.setBackground(Color.GREEN);
 		btnIncrementoDemanda.setBorder(new LineBorder(new Color(0, 0, 0), 7, true));
 
-		JButton btnPasarPeriodo = new JButton("Pasar un periodo");
+		btnPasarPeriodo = new JButton("Pasar un periodo");
 		panel.add(btnPasarPeriodo);
 		btnPasarPeriodo.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		btnPasarPeriodo.setBorder(new LineBorder(new Color(0, 0, 0), 7, true));
 		btnPasarPeriodo.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-		JButton btnDecrementoDemanda = new JButton("Decrementa porcentaje produccion");
+		btnDecrementoDemanda = new JButton("Decrementa porcentaje produccion");
 		panel.add(btnDecrementoDemanda);
 		btnDecrementoDemanda.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnDecrementoDemanda.setBackground(Color.RED);

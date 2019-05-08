@@ -18,8 +18,8 @@ public class Estado {
 	Poblacion poblacion;
 	DineroEstado dinero;
 	Sede sede;
-	private double produccion = calcularProduccion();
-	private double produccionAuxiliar = produccion;
+//	private double produccion = calcularProduccion();
+//	private double produccionAuxiliar = produccion;
 	private double demanda;
 
 	public Estado() {
@@ -30,12 +30,12 @@ public class Estado {
 	}
 
 	public void pasarPeriodo() {
-		sede.produccionTotal();
-		factoria.pagarTrabajador(dinero);
-		poblacion.pagarNV(dinero);
-		poblacion.envejecer();
+//		factoria.pagarTrabajador(dinero);
+//		poblacion.pagarNV(dinero);
 		poblacion.cambiarTipoHabitante();
-		poblacion.reducirVida();
+		poblacion.envejecer();
+		poblacion.eliminarFallecidos();
+//		poblacion.reducirVida();
 
 	}
 
@@ -43,13 +43,13 @@ public class Estado {
 		return demanda;
 	}
 
-	public double getProduccion() {
-		return produccion;
-	}
-
-	public void setProduccion(double produccion) {
-		this.produccion = produccion;
-	}
+//	public double getProduccion() {
+//		return produccion;
+//	}
+//
+//	public void setProduccion(double produccion) {
+//		this.produccion = produccion;
+//	}
 
 	public float calcularProduccion() {
 		int contarTrabajadores = poblacion.contarTipoPersona(EstadoSer.trabajador, 0);
@@ -66,22 +66,22 @@ public class Estado {
 		return demanda -= porcentaje;
 	}
 
-	public int calcularTrabajadores() {
-		double calcular = demanda - produccion;
-		float diferencia = (float) (calcular / 1000);
-		if (demanda != produccion) {
-			if (demanda > produccion) {
-				int trabajadores = (int) Math.ceil(diferencia);
-				return trabajadores;
-			} else {
-				int trabajadores = (int) Math.ceil(diferencia);
-				return trabajadores;
-			}
-		} else {
-			return 0;
-		}
+//	public int calcularTrabajadores() {
+//		double calcular = demanda - produccion;
+//		float diferencia = (float) (calcular / 1000);
+//		if (demanda != produccion) {
+//			if (demanda > produccion) {
+//				int trabajadores = (int) Math.ceil(diferencia);
+//				return trabajadores;
+//			} else {
+//				int trabajadores = (int) Math.ceil(diferencia);
+//				return trabajadores;
+//			}
+//		} else {
+//			return 0;
+//		}
 
-	}
+//	}
 
 	public void contratarTrabajador(ArrayDeque<Seres> demandantes, Stack<Seres> pilaTrabajador) {
 		// if(getDemanda()>factoria.getProduccion()) { /*Hay que obtener el numero
@@ -90,29 +90,29 @@ public class Estado {
 		pilaTrabajador.push(contratado);
 	}
 
-	public void contratarOdespedir(ArrayDeque<Seres> demandantes, Stack<Seres> pilaTrabajador) {
-		int trabajadores = calcularTrabajadores();
-		if (trabajadores > 0) {
-			if (demandantes.size() > trabajadores) {
-				for (int i = 0; i < trabajadores; i++) {
-					contratarTrabajador(demandantes, pilaTrabajador);
-				}
-			}else {
-				int nacimientos = trabajadores-demandantes.size();
-				for (int i = 0; i < demandantes.size(); i++) {
-					contratarTrabajador(demandantes, pilaTrabajador);
-				}
-					poblacion.generadorCiudadanos(nacimientos);
-			}
-
-		} else {
-			trabajadores = trabajadores * -1;
-			for (int i = 0; i < trabajadores; i++) {
-				sede.despedirTrabajadores(demandantes, factoria);
-			}
-
-		}
-	}
+//	public void contratarOdespedir(ArrayDeque<Seres> demandantes, Stack<Seres> pilaTrabajador) {
+//		int trabajadores = calcularTrabajadores();
+//		if (trabajadores > 0) {
+//			if (demandantes.size() > trabajadores) {
+//				for (int i = 0; i < trabajadores; i++) {
+//					contratarTrabajador(demandantes, pilaTrabajador);
+//				}
+//			}else {
+//				int nacimientos = trabajadores-demandantes.size();
+//				for (int i = 0; i < demandantes.size(); i++) {
+//					contratarTrabajador(demandantes, pilaTrabajador);
+//				}
+//					poblacion.generadorCiudadanos(nacimientos);
+//			}
+//
+//		} else {
+//			trabajadores = trabajadores * -1;
+//			for (int i = 0; i < trabajadores; i++) {
+//				sede.despedirTrabajadores(demandantes, factoria);
+//			}
+//
+//		}
+//	}
 
 	/*POSIBLE PRUEBA DEL TEST
 	 * public static void main(String[] args) {

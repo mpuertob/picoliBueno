@@ -16,6 +16,7 @@ public class ParaUI extends UI {
 
     public ParaUI() {
         super();
+        listener();
         estado.pasarPeriodo();
         setDatosEnElInterfazUsuario(estado.getDatosPoblacion(), estado.getDatosEstadoLocal(),
                 estado.getDatosEstadoGlobales());
