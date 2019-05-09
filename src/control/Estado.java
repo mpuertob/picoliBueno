@@ -20,7 +20,7 @@ public class Estado {
 	Sede sede;
 //	private double produccion = calcularProduccion();
 //	private double produccionAuxiliar = produccion;
-	private double demanda;
+	private double demanda = 100000;
 
 	public Estado() {
 		super();
@@ -32,9 +32,11 @@ public class Estado {
 	public void pasarPeriodo() {
 //		factoria.pagarTrabajador(dinero);
 //		poblacion.pagarNV(dinero);
-		poblacion.cambiarTipoHabitante();
-		poblacion.envejecer();
+		poblacion.jubilarTrabajador();
+		poblacion.generadorCiudadanos(poblacion.jubilarTrabajador().size());
 		poblacion.eliminarFallecidos();
+		poblacion.actualizarPoblacion();
+		poblacion.envejecer();
 //		poblacion.reducirVida();
 
 	}
@@ -114,28 +116,21 @@ public class Estado {
 //		}
 //	}
 
-	/*POSIBLE PRUEBA DEL TEST
-	 * public static void main(String[] args) {
-		double produccion = 100000;
-		double demanda = 75250;
-		int trabajadores = 0;
-
-		double calcular = demanda - produccion;
-		float diferencia = (float) (calcular / 1000);
-		if (demanda != produccion) {
-			if (demanda > produccion) {
-				trabajadores = (int) Math.ceil(diferencia);
-				System.out.println(trabajadores);
-			} else {
-				trabajadores = (int) Math.ceil(diferencia);
-				System.out.println(trabajadores * 1000);
-			}
-		} else {
-			System.out.println(trabajadores);
-
-		}
-
-	}*/
+	/*
+	 * POSIBLE PRUEBA DEL TEST public static void main(String[] args) { double
+	 * produccion = 100000; double demanda = 75250; int trabajadores = 0;
+	 * 
+	 * double calcular = demanda - produccion; float diferencia = (float) (calcular
+	 * / 1000); if (demanda != produccion) { if (demanda > produccion) {
+	 * trabajadores = (int) Math.ceil(diferencia); System.out.println(trabajadores);
+	 * } else { trabajadores = (int) Math.ceil(diferencia);
+	 * System.out.println(trabajadores * 1000); } } else {
+	 * System.out.println(trabajadores);
+	 * 
+	 * }
+	 * 
+	 * }
+	 */
 
 	public void calcularDemandantes(double trabajadores, ArrayDeque<Seres> demandantes, Stack<Seres> pilaTrabajador) {
 		if (demandantes.size() > trabajadores) {
@@ -157,7 +152,8 @@ public class Estado {
 
 	public DatosPoblacion getDatosPoblacion() {
 		return new DatosPoblacion(this.poblacion.numeroPoblacion(), this.poblacion.numeroMenores(),
-				this.sede.numTrabajadores(), this.poblacion.numeroJubilados(), 0, this.poblacion.numeroFallecidos(),
+				this.sede.numTrabajadores(), this.poblacion.numeroJubilados(), 0,
+				this.poblacion.numeritoFallecidos(poblacion.eliminarFallecidos()),
 				this.poblacion.jubilarTrabajador().size(), 0);
 	}
 

@@ -1,5 +1,6 @@
 package control;
 
+import java.io.ObjectInputStream.GetField;
 import java.lang.ProcessBuilder.Redirect;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
@@ -59,9 +60,9 @@ public class Poblacion {
 		}
 		return dinero.getDineroTotal();
 	}
-	public int generadorCiudadanos(int numeroCiudadanos) {
+	public int generadorCiudadanos(int recienJubilados) {
 		int nacimiento = 0;
-		for (int i = 0; i < numeroCiudadanos; i++) {
+		for (int i = 0; i < recienJubilados; i++) {
 			Seres ciudadano = new Seres();
 			aniadirMenorCreadoAlaLista(ciudadano);
 			aniadirCiudadanoCreadoAlaLista(ciudadano);
@@ -115,7 +116,6 @@ public class Poblacion {
 			if (persona.getEdad() >= 65 && (persona.getTipoEstado() == EstadoSer.trabajador
 					|| persona.getTipoEstado() == EstadoSer.desempleado)) {
 				recienJubilados.add(persona.getId());
-				generadorCiudadanos(1);
 				persona.setTipoEstado(EstadoSer.jubilado);
 			}
 		}
@@ -125,7 +125,6 @@ public class Poblacion {
 				iterator.remove();
 			}
 		}
-
 		return recienJubilados;
 
 	}
@@ -305,10 +304,10 @@ public class Poblacion {
 			}
 
 		}
-		jubilarTrabajador();
-		eliminarFallecidos();
-		mayoresDeEdad();
-		annadirMayoresEdad();
+//		jubilarTrabajador();
+//		eliminarFallecidos();
+//		mayoresDeEdad();
+//		annadirMayoresEdad();
 	}
 
 	private int getRespuesta(int edad) {
@@ -409,7 +408,13 @@ public class Poblacion {
         }
         return contador;
 	}
-
-
+    
+    public int numeritoFallecidos(ArrayList<Seres> arrayList) {
+		int contador = 0;
+		for (int i = 0; i < arrayList.size(); i++) {
+			contador++;
+		}
+		return contador;
+    	
+    }
 }
-
