@@ -14,13 +14,21 @@ public class ParaUI extends UI {
 
 	private Estado estado = new Estado();
 
-    public ParaUI() {
-        super();
-        listener();
-        estado.pasarPeriodo();
-        setDatosEnElInterfazUsuario(estado.getDatosPoblacion(), estado.getDatosEstadoLocal(),
-                estado.getDatosEstadoGlobales());
-    }
+	public ParaUI() {
+		super();
+		listener();
+		boolean out = false;
+//		do {
+			estado.pasarPeriodo();
+			setDatosEnElInterfazUsuario(estado.getDatosPoblacion(), estado.getDatosEstadoLocal(),
+					estado.getDatosEstadoGlobales());
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+//		} while (!out);
+	}
 
 	public void listener() {
 
@@ -32,13 +40,13 @@ public class ParaUI extends UI {
 
 		getBtnIncrementoDemanda().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				estado.aumentarDemanda();
+				estado.incrementarDemanda();
 			}
 		});
 
 		getBtnDecrementoDemanda().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				estado.decrementarDemanda();
+				estado.incrementarDemanda();
 			}
 		});
 	}

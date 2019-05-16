@@ -8,6 +8,21 @@ public class DineroEstado {
 		this.dineroTotal = dineroTotal;
 	}
 
+	/**
+	 * 
+	 * @param seres
+	 * @param sueldo
+	 * @return el dinero reparte
+	 */
+	public double calcularSueldo(int seres, double sueldo) {
+
+		return sueldo;
+	}
+
+	public double calcularPorcentajeJubilados(double dineroNecesario) {
+		return ((this.dineroTotal * 100) / dineroNecesario) / 100;
+	}
+
 	public double getDineroTotal() {
 		return dineroTotal;
 	}
