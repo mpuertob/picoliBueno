@@ -1,6 +1,7 @@
 package control;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import modelo.empresa.DineroEstado;
 import modelo.poblacion.EstadoSer;
@@ -38,6 +39,7 @@ public class Poblacion {
 	 * @return lista con el mismo tipo que la entrada
 	 */
 	public ArrayList<Ser> obtenerSer(EstadoSer tipo) {
+
 		return poblacion;
 
 	}
@@ -49,8 +51,18 @@ public class Poblacion {
 	 * @return listaid de trabajadores muertos para elimnarlos de la sede
 	 */
 	public ArrayList<Integer> eliminarMuertos(DineroEstado capital) {
-		this.fallecidos++;
-		return null;
+		ArrayList<Integer>muertos = new ArrayList<Integer>();
+		for (Iterator iterator = this.poblacion.iterator(); iterator.hasNext();) {
+			Ser ser = (Ser) iterator.next();
+			if (ser.isPalmado()) {
+				capital.setDineroTotal(ser.getAhorro());
+				if (ser.getTipoEstado()==EstadoSer.trabajador) 
+					this.fallecidos++;
+					muertos.add(ser.getId());
+					iterator.remove();
+				}
+				
+			}return muertos;
 
 	}
 
@@ -58,7 +70,19 @@ public class Poblacion {
 	 * @return lista de los nuevos jubilados para eliminarlos de la sede
 	 */
 	public ArrayList<Integer> actualizarPoblacion() {
-		return null;
+		ArrayList<Integer>poblacionR = new ArrayList<Integer>();
+		for (Ser ser : poblacion) {
+			if (ser.getEdad()==18 && ser.getTipoEstado()==EstadoSer.menor) {
+				ser.setTipoEstado(EstadoSer.desempleado);
+				this.trabajadores++;
+				poblacionR.add(ser.getId());
+			}if (ser.getEdad()==65 && ser.getTipoEstado()==EstadoSer.desempleado || ser.getTipoEstado()==EstadoSer.trabajador) {
+				ser.setTipoEstado(EstadoSer.desempleado);
+				this.jubilados++;
+				poblacionR.add(ser.getId());
+			}
+		}
+		return poblacionR;
 
 	}
 
@@ -88,7 +112,13 @@ public class Poblacion {
 	 * @return cantidad de sere de ese tipo
 	 */
 	public int numeroTipoSeres(EstadoSer tipo) {
-		return id;
+		int resultado = 0;
+		for (Ser ser : poblacion) {
+			if (ser.getTipoEstado() == tipo) {
+				resultado++;
+			}
+		}
+		return resultado;
 
 	}
 
@@ -115,7 +145,6 @@ public class Poblacion {
 	public void despedirTrabajador(ArrayList<Integer> genteDespedida) {
 
 	}
-	
 
 	public ArrayList<Ser> getPoblacion() {
 		return poblacion;

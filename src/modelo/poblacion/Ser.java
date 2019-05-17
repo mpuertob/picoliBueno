@@ -9,8 +9,8 @@ public class Ser {
 	private int edad = 0;
 	private float ahorro = 0;
 	private float esperanzaVida;
-
 	private EstadoSer tipoEstado;
+
 
 	public Ser(int id) {
 		super();
@@ -19,7 +19,7 @@ public class Ser {
 		this.tipoEstado = EstadoSer.menor;
 	}
 
-	public Ser(int id, int edad, EstadoSer tipoEstado) {
+	public Ser(int edad, int id, EstadoSer tipoEstado) {
 		super();
 		this.id = id;
 		this.edad = edad;
@@ -28,7 +28,7 @@ public class Ser {
 	}
 
 	public void pagarNVmenor(double sueldo) {
-
+		
 	}
 
 	public void pagarNVtrabajador(double sueldo, DineroEstado dineroEstado) {
@@ -44,11 +44,11 @@ public class Ser {
 	}
 
 	private void reducirEV(double restos) {
-
+		this.esperanzaVida = (float) (this.esperanzaVida - (((restos * 100) / this.tipoEstado.getNivelVida()) * 0.5) / 100);
 	}
 
 	public boolean isPalmado() {
-		return false;
+		return this.edad>=this.esperanzaVida;
 
 	}
 
