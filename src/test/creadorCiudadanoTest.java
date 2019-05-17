@@ -8,12 +8,12 @@ import java.util.LinkedList;
 import org.junit.jupiter.api.Test;
 
 import control.Poblacion;
-import modelo.poblacion.Seres;
+import modelo.poblacion.Ser;
 
 class creadorCiudadanoTest {
-	Seres seres = new Seres();
+	Ser seres = new Ser(0);
 	Poblacion poblacion = new Poblacion(0, 0, 0);
-	ArrayList<Seres> menores;
+	ArrayList<Ser> menores;
 	
 	@Test
 	void test() {

@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import control.Estado;
 import control.Poblacion;
-import modelo.poblacion.Seres;
+import modelo.poblacion.Ser;
 
 class EstadoTest {
 	Estado estado = new Estado();
@@ -14,11 +14,11 @@ class EstadoTest {
 
 	@Test
 	void testFallecimiento() {
-		Seres ser = new Seres();
+		Ser ser = new Ser(0);
 		if (ser.getEdad()>=ser.getEsperanzaVida()) {
-			assertEquals(true, poblacion.isFallecido(ser));
+			assertEquals(true, ser.isPalmado());
 		} else {
-			assertEquals(false, poblacion.isFallecido(ser));
+			assertEquals(false, ser.isPalmado());
 		}
 	}
 
