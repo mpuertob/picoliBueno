@@ -49,7 +49,6 @@ public class Ser {
 
 	public boolean isPalmado() {
 		return this.edad>=this.esperanzaVida;
-
 	}
 
 	/**
@@ -83,7 +82,9 @@ public class Ser {
 	public int getId() {
 		return id;
 	}
+	
 	public float getEsperanzaVida() {
 		return esperanzaVida;
 	}
+	
 }

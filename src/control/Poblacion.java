@@ -38,9 +38,15 @@ public class Poblacion {
 	 * @param tipo
 	 * @return lista con el mismo tipo que la entrada
 	 */
-	public ArrayList<Ser> obtenerSer(EstadoSer tipo) {
-
-		return poblacion;
+	public ArrayList<Ser> obtenerListaSeres(EstadoSer tipo) {
+		ArrayList<Ser> listado = new ArrayList<Ser>();
+		for (Iterator iterator = this.poblacion.iterator(); iterator.hasNext();) {
+			Ser ser = (Ser) iterator.next();
+			if (ser.getTipoEstado() == tipo) {
+				listado.add(ser);
+			}
+		}
+		return listado;
 
 	}
 
@@ -51,18 +57,19 @@ public class Poblacion {
 	 * @return listaid de trabajadores muertos para elimnarlos de la sede
 	 */
 	public ArrayList<Integer> eliminarMuertos(DineroEstado capital) {
-		ArrayList<Integer>muertos = new ArrayList<Integer>();
+		ArrayList<Integer> muertos = new ArrayList<Integer>();
 		for (Iterator iterator = this.poblacion.iterator(); iterator.hasNext();) {
 			Ser ser = (Ser) iterator.next();
 			if (ser.isPalmado()) {
 				capital.setDineroTotal(ser.getAhorro());
-				if (ser.getTipoEstado()==EstadoSer.trabajador) 
+				if (ser.getTipoEstado() == EstadoSer.trabajador)
 					this.fallecidos++;
-					muertos.add(ser.getId());
-					iterator.remove();
-				}
-				
-			}return muertos;
+				muertos.add(ser.getId());
+				iterator.remove();
+			}
+
+		}
+		return muertos;
 
 	}
 
@@ -70,13 +77,15 @@ public class Poblacion {
 	 * @return lista de los nuevos jubilados para eliminarlos de la sede
 	 */
 	public ArrayList<Integer> actualizarPoblacion() {
-		ArrayList<Integer>poblacionR = new ArrayList<Integer>();
+		ArrayList<Integer> poblacionR = new ArrayList<Integer>();
 		for (Ser ser : poblacion) {
-			if (ser.getEdad()==18 && ser.getTipoEstado()==EstadoSer.menor) {
+			if (ser.getEdad() == 18 && ser.getTipoEstado() == EstadoSer.menor) {
 				ser.setTipoEstado(EstadoSer.desempleado);
 				this.trabajadores++;
 				poblacionR.add(ser.getId());
-			}if (ser.getEdad()==65 && ser.getTipoEstado()==EstadoSer.desempleado || ser.getTipoEstado()==EstadoSer.trabajador) {
+			}
+			if (ser.getEdad() == 65 && ser.getTipoEstado() == EstadoSer.desempleado
+					|| ser.getTipoEstado() == EstadoSer.trabajador) {
 				ser.setTipoEstado(EstadoSer.desempleado);
 				this.jubilados++;
 				poblacionR.add(ser.getId());
@@ -143,7 +152,11 @@ public class Poblacion {
 	 * @param genteDespedida(de la sede)
 	 */
 	public void despedirTrabajador(ArrayList<Integer> genteDespedida) {
-
+		for (Ser ser : this.poblacion) {
+			if (genteDespedida.contains(ser.getId())) {
+				ser.setTipoEstado(EstadoSer.desempleado);
+			}
+		}
 	}
 
 	public ArrayList<Ser> getPoblacion() {

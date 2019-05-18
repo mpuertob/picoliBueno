@@ -21,14 +21,18 @@ public class Factorias {
 	 * @param trabajador
 	 */
 	public void contratarDemandante(Ser trabajador) {
-		
+		this.pilaTrabajador.add(trabajador);
 	}
 	/**
 	 * comparar con ser y eliminar de la pila
 	 * @param id
 	 */
 	public void eliminarTrabajador(int id){
-		
+		for (Ser ser : pilaTrabajador) {
+			if (ser.getId()==id) {
+				pilaTrabajador.remove(ser);
+			}
+		}
 	}
 	/**
 	 * 
@@ -36,7 +40,13 @@ public class Factorias {
 	 * @return lista de ids de depedidos
 	 */
 	public ArrayList<Integer> despedirTrabajadores(int despedidos){
-		return null;
+		ArrayList<Integer>ListaDespidos = new ArrayList<Integer>();
+		for (int i = 0; i < despedidos; i++) {
+			if (this.pilaTrabajador.empty()==false) {
+				ListaDespidos.add(this.pilaTrabajador.pop().getId());
+			}
+		}
+		return ListaDespidos;
 	}
 
 	public int comprobarProduccion() {
