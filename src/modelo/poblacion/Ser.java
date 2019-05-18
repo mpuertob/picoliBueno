@@ -6,7 +6,7 @@ import utilesglobal.Utilies;
 public class Ser {
 	private String nombre = Utilies.obtenerNombre();
 	private int id = 0;
-	private int edad = 0;
+	private double edad = 0;
 	private float ahorro = 0;
 	private float esperanzaVida;
 	private EstadoSer tipoEstado;
@@ -50,6 +50,9 @@ public class Ser {
 	public boolean isPalmado() {
 		return this.edad>=this.esperanzaVida;
 	}
+	public void setEdad(double edad) {
+		this.edad=edad;
+	}
 
 	/**
 	 * @return lo que le queda por pagar
@@ -63,7 +66,7 @@ public class Ser {
 		this.esperanzaVida = esperanzaVida;
 	}
 
-	public int getEdad() {
+	public double getEdad() {
 		return edad;
 	}
 

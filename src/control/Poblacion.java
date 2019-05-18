@@ -17,6 +17,13 @@ public class Poblacion {
 	private int menores = 0;
 	private int fallecidos = 0;
 
+	public void newDatos() {
+		this.jubilados = 0;
+		this.trabajadores = 0;
+		this.menores = 0;
+		this.fallecidos = 0;
+	}
+
 	public Poblacion(int menoresInicial, int trabajadoresIncial, int jubiladosInicial) {
 
 		for (int i = 0; i < menoresInicial; i++) {
@@ -82,11 +89,13 @@ public class Poblacion {
 			if (ser.getEdad() == 18 && ser.getTipoEstado() == EstadoSer.menor) {
 				ser.setTipoEstado(EstadoSer.desempleado);
 				this.trabajadores++;
-				poblacionR.add(ser.getId());
 			}
-			if (ser.getEdad() == 65 && ser.getTipoEstado() == EstadoSer.desempleado
-					|| ser.getTipoEstado() == EstadoSer.trabajador) {
-				ser.setTipoEstado(EstadoSer.desempleado);
+			if (ser.getEdad() == 65 && ser.getTipoEstado() == EstadoSer.desempleado) {
+				ser.setTipoEstado(EstadoSer.jubilado);
+				this.jubilados++;
+			}
+			if (ser.getAhorro() == 65 && ser.getTipoEstado() == EstadoSer.trabajador) {
+				ser.setTipoEstado(EstadoSer.jubilado);
 				this.jubilados++;
 				poblacionR.add(ser.getId());
 			}
@@ -135,7 +144,9 @@ public class Poblacion {
 	 * envejece a la poblacion 1 año
 	 */
 	public void envejecerPoblacion() {
-
+		for (Ser ser : poblacion) {
+			ser.setEdad(ser.getEdad() + 1);
+		}
 	}
 
 	/**
@@ -143,7 +154,10 @@ public class Poblacion {
 	 * @param nacimiento
 	 */
 	public void generarMenor(int nacimiento) {
-
+		for (int i = 0; i < nacimiento; i++) {
+			poblacion.add(new Ser(0, this.id, EstadoSer.menor));
+			this.id++;
+		}
 	}
 
 	/**

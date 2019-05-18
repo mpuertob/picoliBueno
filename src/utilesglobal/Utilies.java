@@ -7,8 +7,8 @@ public class Utilies {
 	public static int obtenerAleatorio(int max) {
 	return new Random().nextInt(max)+1;
 	}
-	public static int obtenerAleatorio(int min,int max) {
-		return (int) (Math.random()*max+min);
+	public static int obtenerAleatorio(double edad,int max) {
+		return (int) (Math.random()*max+edad);
 	}
 	
 	public static String obtenerNombre() {

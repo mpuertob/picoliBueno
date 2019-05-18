@@ -46,7 +46,7 @@ public class Sede {
 			for (Iterator<Factorias> iterator2 = this.factorias.iterator(); iterator2.hasNext();) {
 				Factorias factoria = (Factorias) iterator2.next();
 				if (factoria.puestosLibres() > 0) {
-					factoria.setContratarTrabajador(ser);
+					factoria.contratarDemandante(ser);
 					break;
 				}
 			}

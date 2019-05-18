@@ -22,7 +22,14 @@ public class Estado {
 	}
 
 	public void pasarPeriodo() {
-	}
+		this.poblacion.newDatos();
+		this.dinero.setDineroTotal(dinero.getDineroTotal()+sede.produccionTotal());
+		this.poblacion.envejecerPoblacion();
+		this.sede.eliminarTrabajadoresDead(this.poblacion.eliminarMuertos(dinero));
+		this.sede.eliminarTrabajadoresDead(this.poblacion.actualizarPoblacion());
+		this.poblacion.actualizarPoblacion();
+		}
+	
 
 	public double incrementarDemanda() {
 		float porcentaje = (float) (this.demanda * 0.1);

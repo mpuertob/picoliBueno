@@ -22,11 +22,11 @@ public class ParaUI extends UI {
 			estado.pasarPeriodo();
 			setDatosEnElInterfazUsuario(estado.getDatosPoblacion(), estado.getDatosEstadoLocal(),
 					estado.getDatosEstadoGlobales());
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+//			try {
+//				Thread.sleep(1000);
+//			} catch (InterruptedException e) {
+//				e.printStackTrace();
+//			}
 //		} while (!out);
 	}
 
@@ -35,6 +35,7 @@ public class ParaUI extends UI {
 		getBtnPasarPeriodo().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				estado.pasarPeriodo();
+				
 			}
 		});
 

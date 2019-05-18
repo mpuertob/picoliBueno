@@ -20,8 +20,8 @@ public class Factorias {
 	 * añade trabajador a la pila
 	 * @param trabajador
 	 */
-	public void contratarDemandante(Ser trabajador) {
-		this.pilaTrabajador.add(trabajador);
+	public void contratarDemandante(Ser demandante) {
+		this.pilaTrabajador.add(demandante);
 	}
 	/**
 	 * comparar con ser y eliminar de la pila
@@ -67,11 +67,6 @@ public class Factorias {
 
 	public void setPilaTrabajador(Stack<Ser> pilaTrabajador) {
 		this.pilaTrabajador = pilaTrabajador;
-	}
-
-	public void setContratarTrabajador(Ser ser) {
-		this.pilaTrabajador.add(ser);
-
 	}
 
 }
