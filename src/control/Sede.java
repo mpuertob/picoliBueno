@@ -101,9 +101,9 @@ public class Sede {
 
 	}
 
-	public void despedirTrabajadores(ArrayDeque<Ser> demandantes, Factorias empresa) {
-		Ser trabajador = empresa.getPilaTrabajador().pop();
-		demandantes.offer(trabajador);
+	public ArrayList<Integer> despedirTrabajadores(int despedidos){
+		ArrayList<Integer>listaDespedidos = new ArrayList<Integer>();
+		return null;
 	}
 
 	public ArrayList<Factorias> getFactorias() {
